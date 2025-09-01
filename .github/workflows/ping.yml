@@ -1,1 +1,15 @@
+name: Keep Alive
 
+on:
+  schedule:
+    - cron: "*/8 * * * *"
+  workflow_dispatch:
+
+jobs:
+  ping:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Zufallswartezeit (0–6 Minuten)
+        run: sleep $(( RANDOM % 360 ))
+      - name: Call Render n8n
+        run: curl -s https://n8n-latest-86eu.onrender.com/healthz
